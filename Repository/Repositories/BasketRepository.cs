@@ -27,7 +27,7 @@ namespace Repository.Repositories
                 _items.Add(basketItems);
                 return;
             }
-            var existingItem = Items.FirstOrDefault(i => i.IdBasketItems == basketItems.IdBasketItems);
+            var existingItem = _items.FirstOrDefault(i => i.IdBasketItems == basketItems.IdBasketItems);
             existingItem.Quantity += basketItems.Quantity;
         }
     }
