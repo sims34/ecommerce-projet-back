@@ -8,11 +8,11 @@ namespace Service.Interfaces
     {
         void Add(T entity);
 
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
 
         T Find(Guid id);
 
-        bool Update(T entity);
+        bool Update(Guid id,T entity);
 
         bool Remove(T entity);
 

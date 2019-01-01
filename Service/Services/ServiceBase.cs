@@ -8,7 +8,7 @@ namespace Service.Services
 {
     public class ServiceBase<T> : IServiceBase<T> where T : class
     {
-        protected IRepositoryBase<T> _repo;
+        protected readonly IRepositoryBase<T> _repo;
 
         public ServiceBase(IRepositoryBase<T> repo)
         {
@@ -17,32 +17,34 @@ namespace Service.Services
 
         public virtual void Add(T entity)
         {
-            this._repo.Add(entity);
+             this._repo.Add(entity);
+        }
+        
+        public virtual T Find(Guid id)
+        {
+            return this._repo.Find(id);
         }
 
-        public T Find(Guid id)
+        public virtual List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return this._repo.GetAll();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual bool Remove(T entity)
         {
-            throw new NotImplementedException();
+            this._repo.Remove(entity);
+            return true;
         }
 
-        public bool Remove(T entity)
+        public virtual void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._repo.SaveChanges();
         }
 
-        public void SaveChanges()
+        public virtual bool Update(Guid id,T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(T entity)
-        {
-            throw new NotImplementedException();
+            this._repo.Update(id,entity);
+            return true;
         }
     }
 }

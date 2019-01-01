@@ -6,6 +6,8 @@ using System.Linq;
 
 namespace Repository
 {
+
+
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 
     {
@@ -16,37 +18,43 @@ namespace Repository
              this._context = context;
         }
         
-        public void Add(T entity)
-        {
-             this._context.Set<T>().Add(entity);
-        }
+       
 
-        public T Find(Guid id)
+        public virtual T Find(Guid id)
         {
             return this._context.Set<T>().Find(id);
         }
 
-        public IEnumerable<T> GetAll()
+        
+        public virtual List<T> GetAll()
         {
             return this._context.Set<T>().ToList();
         }
 
-        public Boolean Remove(T entity)
+        public virtual bool Remove(T entity)
         {
              this._context.Set<T>().Remove(entity);
             return true;
         }
 
-        public Boolean Update(T entity)
+        public virtual bool Update(Guid id,T entity)
         {
              this._context.Set<T>().Update(entity);
             return true;
-
-
         }
-        public void SaveChanges()
+        public virtual void SaveChanges()
         {
             this._context.SaveChanges();
+        }
+
+        public virtual T GetById(int id)
+        {
+            return _context.Set<T>().FirstOrDefault();
+        }
+
+        public virtual void Add(T entity)
+        {
+             this._context.Set<T>().Add(entity);
         }
     }
 }

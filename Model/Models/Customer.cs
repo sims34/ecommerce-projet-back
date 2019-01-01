@@ -6,6 +6,6 @@ namespace Model.Models
 {
     public class Customer : User
     {
-        //public DateTime DateSignIn { get; set; }
+      
     }
 }

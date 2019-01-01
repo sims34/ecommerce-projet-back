@@ -12,21 +12,21 @@ namespace Service
     {
         private readonly ICustomerRepository _customerRepository;
 
-
         public CustomerService(ICustomerRepository _cr) : base(_cr)
         {
             this._customerRepository = _cr;
         }
 
+        // add some feature on CRUD method into the service
         public override void Add(Customer entity)
         {
-            entity.LastName += "toto";
-            base.Add(entity);
+            
         }
 
+        // add CRUD  method
         public string SetNameShort(Customer customer)
         {
-            throw new NotImplementedException();
+            return "Bonjour " + customer.FirstName;
         }
     }
 
