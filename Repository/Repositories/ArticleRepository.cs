@@ -16,10 +16,9 @@ namespace Repository.Repositories
         }
 
        
-        public virtual Article GetById(Guid id)
+        public override Article Find(Guid id)
         {
-            
-            return _context.Articles.FirstOrDefault(x => x.IdArticle == id);
+            return base._context.Articles.FirstOrDefault(x => x.IdArticle == id);
         }
 
         public override bool Remove(Article entity)
@@ -46,6 +45,16 @@ namespace Repository.Repositories
                 return true;
             }
             return false;
+        }
+
+        public List<Article> SetArticleFirst(Article article)
+        {
+            List<Article> ListArticle = base.GetAll();
+            var index = ListArticle.FindIndex(x => x.IdArticle == article.IdArticle);
+            var item = ListArticle[index];
+            ListArticle[index] = ListArticle[0];
+            ListArticle[0] = item;
+            return ListArticle;
         }
 
         public override bool Update(Guid id,Article entity)

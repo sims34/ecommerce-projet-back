@@ -8,6 +8,6 @@ namespace Repository.Interfaces
     public interface IArticleRepository : IRepositoryBase<Article>
     {
         bool RemoveById(Guid id);
-        Article GetById(Guid id);
+        List<Article> SetArticleFirst(Article article);
     }
 }

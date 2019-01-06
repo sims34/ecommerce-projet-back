@@ -10,26 +10,28 @@ namespace Service.Services
     public class BasketService : ServiceBase<Basket>, IBasketService
     {
         
-        private readonly IBasketRepository _repo;
-        private readonly IBasketItemsRepository _basketItemsRepository;
-        private readonly IArticleRepository _articleRepository;
+        private readonly IBasketRepository _basketRepository;
 
-        public BasketService(IArticleRepository articleRepository, IBasketItemsRepository basketItemsRepository, IBasketRepository repo)
-            :base(repo)
-        { 
-            _repo = repo;
-            _basketItemsRepository = basketItemsRepository;
-            _articleRepository = articleRepository;
+        public BasketService(  IBasketRepository repo) :base(repo)
+        {
+            _basketRepository = repo;
         }
+
         public bool AddItemsToBasket(int basketId, BasketItems basketItems)
         {
-           
-            return false;
+            var basket = _basketRepository.FindById(basketId);
+            if( basket == null)
+            {
+                return false;
+            }
+            _basketRepository.AddItems(basketItems);
+            return true;
         }
 
-        public int GetBasketItemsCount()
+        public int GetBasketItemsCount(int basketId)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
+    

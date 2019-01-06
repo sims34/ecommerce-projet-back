@@ -6,13 +6,14 @@ namespace Repository.Interfaces
 {
     public interface IRepositoryBase<T> where T : class
     {
-        T GetById(int id);
        
         void Add(T entity);
 
         List<T> GetAll();
 
         T Find(Guid id);
+
+        T FindById(int id);
 
         bool Update(Guid id,T entity);
 

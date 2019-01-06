@@ -26,7 +26,7 @@ namespace Service.Services
         }
         public  virtual Article GetArticle(Guid id)
         {
-            return _articleRepository.GetById(id);
+            return _articleRepository.Find(id);
         }
 
         public virtual bool RemoveById(Guid id)

@@ -17,15 +17,19 @@ namespace Repository
         {
              this._context = context;
         }
-        
-       
+
+
 
         public virtual T Find(Guid id)
         {
             return this._context.Set<T>().Find(id);
         }
 
-        
+        public virtual T FindById(int id)
+        {
+            return this._context.Set<T>().FirstOrDefault();
+        }
+
         public virtual List<T> GetAll()
         {
             return this._context.Set<T>().ToList();
@@ -46,12 +50,6 @@ namespace Repository
         {
             this._context.SaveChanges();
         }
-
-        public virtual T GetById(int id)
-        {
-            return _context.Set<T>().FirstOrDefault();
-        }
-
         public virtual void Add(T entity)
         {
              this._context.Set<T>().Add(entity);

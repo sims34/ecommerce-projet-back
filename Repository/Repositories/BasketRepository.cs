@@ -10,18 +10,28 @@ namespace Repository.Repositories
 {
 
 
+
     public class BasketRepository : RepositoryBase<Basket>, IBasketRepository
     {
-        public List<BasketItems> _items = new List<BasketItems>();
-        public IReadOnlyCollection<BasketItems> Items => _items.AsReadOnly();
-        
+        private List<BasketItems> _items;
+        private IReadOnlyCollection<BasketItems> Items;
+
+
         public BasketRepository(AppDbContext context) : base(context)
         {
 
         }
-
-        public virtual void AddItems(BasketItems basketItems)
+        public override Basket FindById(int id)
         {
+            return base._context.Basket.FirstOrDefault(b => b.BasketId == id);
+        }
+
+        public virtual void AddItems(int basketId, BasketItems basketItems)
+        {
+            _items = GetBasketItems(basketId);
+
+            Items = _items.AsReadOnly();
+
             if (!Items.Any(i => i.IdBasketItems == basketItems.IdBasketItems))
             {
                 _items.Add(basketItems);
@@ -29,6 +39,18 @@ namespace Repository.Repositories
             }
             var existingItem = _items.FirstOrDefault(i => i.IdBasketItems == basketItems.IdBasketItems);
             existingItem.Quantity += basketItems.Quantity;
+        }
+
+       
+
+        public virtual List<BasketItems> GetBasketItems(int basketId)
+        {
+            var basket = this.FindById(basketId);
+
+
+            var basketItems = basket.BasketItems;
+
+            return basketItems;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Model.Models
     {
         public int BasketId { get; set; }
         public Account Account { get; set; }
-        public ICollection<BasketItems> BasketItems { get; set; }
+        public List<BasketItems> BasketItems { get; set; }
         
     }
 }
