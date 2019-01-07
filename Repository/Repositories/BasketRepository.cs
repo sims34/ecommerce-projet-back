@@ -8,9 +8,6 @@ using System.Text;
 
 namespace Repository.Repositories
 {
-
-
-
     public class BasketRepository : RepositoryBase<Basket>, IBasketRepository
     {
         private List<BasketItems> _items;

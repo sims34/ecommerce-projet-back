@@ -24,7 +24,7 @@ namespace Service.Services
             {
                 return false;
             }
-            _basketRepository.AddItems(basketItems);
+            _basketRepository.AddItems(basketId, basketItems);
             return true;
         }
 

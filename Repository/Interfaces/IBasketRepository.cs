@@ -7,7 +7,7 @@ namespace Repository.Interfaces
 {
     public interface IBasketRepository : IRepositoryBase<Basket>
     {
-        void AddItems(BasketItems basketItems); //into list type : BasketItems
+        void AddItems(int basketId,BasketItems basketItems); //into list type : BasketItems
 
         List<BasketItems> GetBasketItems(int basketId);
     }
