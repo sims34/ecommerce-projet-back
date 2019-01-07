@@ -6,9 +6,9 @@ namespace Model.Models
 {
     public class Order
     {
-        public Guid IdOrder { get; set; }
-        public Basket card { get; set; }
-        public DateTime Shipped { get; set; }
+        public int IdOrder { get; set; }
+        public Account Account { get; set; }
+        public List<BasketItems> Basket { get; set; }
         public Status OrderStatus { get; set; }
 
     }

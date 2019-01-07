@@ -3,16 +3,17 @@ using Repository.Interfaces;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Service.Services
 {
     public class BasketService : ServiceBase<Basket>, IBasketService
     {
-        
+
         private readonly IBasketRepository _basketRepository;
 
-        public BasketService(  IBasketRepository repo) :base(repo)
+        public BasketService(IBasketRepository repo) : base(repo)
         {
             _basketRepository = repo;
         }
@@ -20,7 +21,7 @@ namespace Service.Services
         public bool AddItemsToBasket(int basketId, BasketItems basketItems)
         {
             var basket = _basketRepository.FindById(basketId);
-            if( basket == null)
+            if (basket == null)
             {
                 return false;
             }
@@ -30,8 +31,23 @@ namespace Service.Services
 
         public int GetBasketItemsCount(int basketId)
         {
-            return 0;
+            throw new NotImplementedException();
+        }
+
+        public int GetQuantityTotal(int basketId)
+        {
+            var basket = _basketRepository.FindById(basketId);
+            int qtiteTotalItems = basket.BasketItems.Sum(i => i.Quantity);
+            return qtiteTotalItems;
+        }
+
+        public int GetTotalPriceBasket(int basketId)
+        {
+            var basket = _basketRepository.FindById(basketId);
+            int totalPrice = basket.BasketItems.Sum(i => i.UnitePrice * i.Quantity);
+            return totalPrice;
         }
     }
 }
+
     

@@ -9,7 +9,7 @@ namespace Service.Interfaces
     {
         int GetBasketItemsCount(int basketId);
         bool AddItemsToBasket(int basketId, BasketItems basketItems);
-        //setQuantity
-
+        int GetTotalPriceBasket(int basketId);
+        int GetQuantityTotal(int basketId);
     }
 }

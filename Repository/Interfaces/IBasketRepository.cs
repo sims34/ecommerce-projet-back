@@ -10,5 +10,6 @@ namespace Repository.Interfaces
         void AddItems(int basketId,BasketItems basketItems); //into list type : BasketItems
 
         List<BasketItems> GetBasketItems(int basketId);
+       
     }
 }
