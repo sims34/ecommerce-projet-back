@@ -8,7 +8,7 @@ namespace Model.Models
     {
         public int IdOrder { get; set; }
         public Account Account { get; set; }
-        public List<BasketItems> Basket { get; set; }
+        public Basket Basket { get; set; }
         public Status OrderStatus { get; set; }
 
     }

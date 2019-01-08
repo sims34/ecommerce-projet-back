@@ -10,5 +10,6 @@ namespace Model.Models
         public int UnitePrice { get; set; }
         public int Quantity { get; set; }
         public Article Article { get; set; }
+        public Basket Basket { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace Service.Interfaces
         bool AddItemsToBasket(int basketId, BasketItems basketItems);
         int GetTotalPriceBasket(int basketId);
         int GetQuantityTotal(int basketId);
+        bool IsExistingItem(Basket basket, BasketItems basketItem);
     }
 }

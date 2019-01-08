@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repository.Repositories
 {
-    public class AdminRepository : RepositoryBase<Article>, IAdminRepository
+    public class AdminRepository : RepositoryBase<Admin>, IAdminRepository
     {
         public AdminRepository(AppDbContext context) : base(context)
         {

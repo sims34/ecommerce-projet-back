@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Model.Models;
 using Repository.Interfaces;
 using System;
@@ -10,21 +11,28 @@ namespace Repository.Repositories
 {
     public class BasketRepository : RepositoryBase<Basket>, IBasketRepository
     {
-        private List<BasketItems> _items;
-        private IReadOnlyCollection<BasketItems> Items;
-
-
+      
         public BasketRepository(AppDbContext context) : base(context)
         {
 
         }
         public override Basket FindById(int id)
         {
-            return base._context.Basket.FirstOrDefault(b => b.BasketId == id);
+            // return _context.Basket.Find(id);
+            return base._context.Basket
+                .Include(x => x.BasketItems)
+                .Include("BasketItems.Article")
+                .FirstOrDefault(b => b.BasketId == id);
         }
 
-        public virtual void AddItems(int basketId, BasketItems basketItems)
+        public virtual void AddItems(int basketId, BasketItems basketItem)
         {
+            var basket = _context.Basket.First(x => x.BasketId == basketId);
+            basketItem.Basket = basket;
+            _context.Add(basketItem);
+            _context.SaveChanges();
+
+            /* check service
             _items = GetBasketItems(basketId);
 
             Items = _items.AsReadOnly();
@@ -35,19 +43,14 @@ namespace Repository.Repositories
                 return;
             }
             var existingItem = _items.FirstOrDefault(i => i.IdBasketItems == basketItems.IdBasketItems);
-            existingItem.Quantity += basketItems.Quantity;
+            existingItem.Quantity += basketItems.Quantity;*/
         }
 
        
 
         public virtual List<BasketItems> GetBasketItems(int basketId)
         {
-            var basket = this.FindById(basketId);
-
-
-            var basketItems = basket.BasketItems;
-
-            return basketItems;
+            return this.FindById(basketId).BasketItems;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 
 namespace Service.Services
 {
+
     public class BasketService : ServiceBase<Basket>, IBasketService
     {
 
@@ -18,14 +19,13 @@ namespace Service.Services
             _basketRepository = repo;
         }
 
-        public bool AddItemsToBasket(int basketId, BasketItems basketItems)
+        public bool AddItemsToBasket(int basketId, BasketItems basketItem)
         {
             var basket = _basketRepository.FindById(basketId);
-            if (basket == null)
-            {
-                return false;
-            }
-            _basketRepository.AddItems(basketId, basketItems);
+            
+            if (basket == null || IsExistingItem(basket,basketItem)) return false;
+            
+             _basketRepository.AddItems(basketId, basketItem);
             return true;
         }
 
@@ -46,6 +46,17 @@ namespace Service.Services
             var basket = _basketRepository.FindById(basketId);
             int totalPrice = basket.BasketItems.Sum(i => i.UnitePrice * i.Quantity);
             return totalPrice;
+        }
+
+        public bool IsExistingItem(Basket basket, BasketItems basketItem)
+        {
+            var existingItem = basket.BasketItems.FirstOrDefault(i => 
+            i.Article.IdArticle == basketItem.Article.IdArticle);
+
+            if (existingItem == null) return false;
+
+            existingItem.Quantity += basketItem.Quantity;
+            return true;
         }
     }
 }
