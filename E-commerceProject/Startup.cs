@@ -44,13 +44,8 @@ namespace E_commerceProject
 
             // services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
-            services.AddScoped<IArticleService, ArticleService>();
-            services.AddScoped<IArticleRepository, ArticleRepository>();
-            //services.AddScoped<IRepositoryBase<Article>, RepositoryBase<Article>>();
+            new DependenceInjection(services);
+            
 
             //swagger
             services.AddSwaggerGen(c =>

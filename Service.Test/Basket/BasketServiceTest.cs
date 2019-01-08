@@ -21,12 +21,10 @@ namespace Service.Test
             _basketRepository = new Mock<IBasketRepository>();
             _basketService = new BasketService(_basketRepository.Object);
         }
+
         [TestMethod]
         public void GivenAddNewItem_WhenItemExiting_ThenReturnfalse()
         {
-            //var mock = new Mock<IBasketService>();
-
-            //mock.Setup(p => p.AddItemsToBasket(It.IsAny<>))
             var articleGuid = Guid.NewGuid();
             var basket = new Basket();
             var bi = new BasketItems()
@@ -42,7 +40,7 @@ namespace Service.Test
         }
 
         [TestMethod]
-        public void GivenAddNewItem_WhenNotItemExiting_ThenReturnfalse()
+        public void GivenAddNewItem_WhenNotItemExiting_ThenReturnTrue()
         {
             var articleGuid = Guid.NewGuid();
             var basket = new Basket();
@@ -54,8 +52,10 @@ namespace Service.Test
             basket.BasketItems.Add(bi);
 
             _basketRepository.Setup(x => x.FindById(1)).Returns(basket);
+
             var res = _basketService.AddItemsToBasket(1, 
-                new BasketItems() { Article = new Article() { IdArticle = Guid.NewGuid() } });
+                new BasketItems()
+                { Article = new Article() { IdArticle = Guid.NewGuid() } });
             Assert.IsTrue(res);
         }
     }
