@@ -34,8 +34,8 @@ namespace Service.Test
             basket.BasketItems = new List<BasketItems>();
             basket.BasketItems.Add(bi);
 
-            _basketRepository.Setup(x => x.FindById(1)).Returns(basket);
-            var res = _basketService.AddItemsToBasket(1, bi);
+            _basketRepository.Setup(x => x.Find(articleGuid)).Returns(basket);
+            var res = _basketService.AddItemsToBasket(articleGuid, bi);
             Assert.IsFalse(res);
         }
 
@@ -51,9 +51,9 @@ namespace Service.Test
             basket.BasketItems = new List<BasketItems>();
             basket.BasketItems.Add(bi);
 
-            _basketRepository.Setup(x => x.FindById(1)).Returns(basket);
+            _basketRepository.Setup(x => x.Find(articleGuid)).Returns(basket);
 
-            var res = _basketService.AddItemsToBasket(1, 
+            var res = _basketService.AddItemsToBasket(articleGuid, 
                 new BasketItems()
                 { Article = new Article() { IdArticle = Guid.NewGuid() } });
             Assert.IsTrue(res);

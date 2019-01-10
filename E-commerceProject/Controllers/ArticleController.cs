@@ -30,7 +30,7 @@ namespace E_commerceProject.Controllers
         [HttpGet("{id}")]
         public ActionResult<Article> Get(Guid id)
         {
-            return _articleService.GetArticle(id);
+            return _articleService.Find(id);
         }
 
         // POST api/values

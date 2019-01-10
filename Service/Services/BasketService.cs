@@ -9,6 +9,7 @@ using System.Text;
 namespace Service.Services
 {
 
+
     public class BasketService : ServiceBase<Basket>, IBasketService
     {
 
@@ -19,9 +20,9 @@ namespace Service.Services
             _basketRepository = repo;
         }
 
-        public bool AddItemsToBasket(int basketId, BasketItems basketItem)
+        public bool AddItemsToBasket(Guid basketId, BasketItems basketItem)
         {
-            var basket = _basketRepository.FindById(basketId);
+            var basket = _basketRepository.Find(basketId);
             
             if (basket == null || IsExistingItem(basket,basketItem)) return false;
             
@@ -29,21 +30,21 @@ namespace Service.Services
             return true;
         }
 
-        public int GetBasketItemsCount(int basketId)
+        public int GetBasketItemsCount(Guid basketId)
         {
             throw new NotImplementedException();
         }
 
-        public int GetQuantityTotal(int basketId)
+        public int GetQuantityTotal(Guid basketId)
         {
-            var basket = _basketRepository.FindById(basketId);
+            var basket = _basketRepository.Find(basketId);
             int qtiteTotalItems = basket.BasketItems.Sum(i => i.Quantity);
             return qtiteTotalItems;
         }
 
-        public int GetTotalPriceBasket(int basketId)
+        public int GetTotalPriceBasket(Guid basketId)
         {
-            var basket = _basketRepository.FindById(basketId);
+            var basket = _basketRepository.Find(basketId);
             int totalPrice = basket.BasketItems.Sum(i => i.UnitePrice * i.Quantity);
             return totalPrice;
         }
@@ -58,6 +59,7 @@ namespace Service.Services
             existingItem.Quantity += basketItem.Quantity;
             return true;
         }
+
     }
 }
 

@@ -9,8 +9,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190108154619_add-basket")]
-    partial class addbasket
+    [Migration("20190110142425_seedAccount")]
+    partial class seedAccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,8 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Models.Account", b =>
                 {
-                    b.Property<Guid>("IdAccount");
+                    b.Property<Guid>("IdAccount")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("BillAddress");
 
@@ -31,9 +32,17 @@ namespace Model.Migrations
 
                     b.Property<DateTime>("Open");
 
+                    b.Property<Guid>("UserId");
+
                     b.HasKey("IdAccount");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Account");
+
+                    b.HasData(
+                        new { IdAccount = new Guid("1e10ba7e-469a-485d-95f4-52ec6c234e54"), BillAddress = "5 Avenue NEW-YORK, USA", Closed = new DateTime(2020, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), IsClosed = true, Open = new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Local), UserId = new Guid("f2d7b0c4-dbb5-4ce8-b4af-cf4d5157197c") }
+                    );
                 });
 
             modelBuilder.Entity("Model.Models.Article", b =>
@@ -58,15 +67,15 @@ namespace Model.Migrations
                     b.ToTable("Articles");
 
                     b.HasData(
-                        new { IdArticle = new Guid("b7a0fc2b-fb17-47be-9a08-c6b4b5574822"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "POMADE hydradanteXXL-MXL", PriceHT = 12, Tax = 3 },
-                        new { IdArticle = new Guid("03468e04-eb67-4b24-a7ee-254dc1dbe160"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "Creme hydradanteXXL", PriceHT = 12, Tax = 3 },
-                        new { IdArticle = new Guid("75ad12ab-56c6-4e08-863c-f22b0cc47e11"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "pomade tonic", PriceHT = 12, Tax = 3 }
+                        new { IdArticle = new Guid("78ace119-29bc-4903-a68f-fa10db32bcbf"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "Creme hydradanteXXL", PriceHT = 12, Tax = 3 },
+                        new { IdArticle = new Guid("78ace119-29bc-4903-a68f-fa10db32bcaa"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "Creme hydradanteXXL", PriceHT = 12, Tax = 3 },
+                        new { IdArticle = new Guid("78ace119-29bc-4903-a68f-fa10db32bcbb"), Activate = true, DelievryTime = 3, Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.", Label = "pomade tonic", PriceHT = 12, Tax = 3 }
                     );
                 });
 
             modelBuilder.Entity("Model.Models.Basket", b =>
                 {
-                    b.Property<int>("BasketId")
+                    b.Property<Guid>("BasketId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("AccountIdAccount");
@@ -80,12 +89,12 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Models.BasketItems", b =>
                 {
-                    b.Property<int>("IdBasketItems")
+                    b.Property<Guid>("IdBasketItems")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("ArticleIdArticle");
 
-                    b.Property<int?>("BasketId");
+                    b.Property<Guid?>("BasketId");
 
                     b.Property<int>("Quantity");
 
@@ -102,7 +111,7 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -118,11 +127,15 @@ namespace Model.Migrations
 
                     b.Property<string>("Mail");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
+
+                    b.HasData(
+                        new { UserId = new Guid("f2d7b0c4-dbb5-4ce8-b4af-cf4d5157197c"), Address = "2 Avenue NEW-YORK, USA", Country = "USA", FirstName = "John", LastName = "Smith", Mail = "smith@john.com" }
+                    );
                 });
 
             modelBuilder.Entity("Model.Models.Admin", b =>
@@ -151,8 +164,8 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.Models.Account", b =>
                 {
                     b.HasOne("Model.Models.User", "User")
-                        .WithOne("Account")
-                        .HasForeignKey("Model.Models.Account", "IdAccount")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

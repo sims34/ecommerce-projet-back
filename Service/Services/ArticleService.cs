@@ -24,10 +24,10 @@ namespace Service.Services
             //{
             //}
         }
-        public  virtual Article GetArticle(Guid id)
-        {
-            return _articleRepository.Find(id);
-        }
+        //public  virtual Article GetArticle(Guid id)
+        //{
+        //    return _articleRepository.Find(id);
+        //}
 
         public virtual bool RemoveById(Guid id)
         {

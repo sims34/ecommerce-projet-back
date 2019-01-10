@@ -9,12 +9,13 @@ namespace Model.Models
     {
         [Key]
         public Guid IdArticle { get; set; }
-        public String Label { get; set; }
-        public String Description { get; set; }
+        public string Label { get; set; }
+        public string Description { get; set; }
         public int PriceHT { get; set; }
         public int Tax { get; set; }
         public bool Activate { get; set; }
         public int DelievryTime { get; set; }
+     //   public String ImgUrl { get; set; }
 
     }
 }

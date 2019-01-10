@@ -16,7 +16,7 @@ namespace Repository.Repositories
         {
 
         }
-        public override Basket FindById(int id)
+        public override Basket Find (Guid id)
         {
             // return _context.Basket.Find(id);
             return base._context.Basket
@@ -25,7 +25,7 @@ namespace Repository.Repositories
                 .FirstOrDefault(b => b.BasketId == id);
         }
 
-        public virtual void AddItems(int basketId, BasketItems basketItem)
+        public virtual void AddItems(Guid basketId, BasketItems basketItem)
         {
             var basket = _context.Basket.First(x => x.BasketId == basketId);
             basketItem.Basket = basket;
@@ -48,9 +48,9 @@ namespace Repository.Repositories
 
        
 
-        public virtual List<BasketItems> GetBasketItems(int basketId)
+        public virtual List<BasketItems> GetBasketItems(Guid basketId)
         {
-            return this.FindById(basketId).BasketItems;
+            return this.Find(basketId).BasketItems;
         }
     }
 }

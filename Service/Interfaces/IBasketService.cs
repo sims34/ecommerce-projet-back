@@ -7,10 +7,10 @@ namespace Service.Interfaces
 {
     public interface IBasketService : IServiceBase<Basket>
     {
-        int GetBasketItemsCount(int basketId);
-        bool AddItemsToBasket(int basketId, BasketItems basketItems);
-        int GetTotalPriceBasket(int basketId);
-        int GetQuantityTotal(int basketId);
+        int GetBasketItemsCount(Guid basketId);
+        bool AddItemsToBasket(Guid basketId, BasketItems basketItems);
+        int GetTotalPriceBasket(Guid basketId);
+        int GetQuantityTotal(Guid basketId);
         bool IsExistingItem(Basket basket, BasketItems basketItem);
     }
 }

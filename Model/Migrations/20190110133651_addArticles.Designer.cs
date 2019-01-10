@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Model.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190110133651_addArticles")]
+    partial class addArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace Model.Migrations
                     b.ToTable("Account");
 
                     b.HasData(
-                        new { IdAccount = new Guid("b6b00160-207e-44e1-b99f-e0b67c6e99dd"), BillAddress = "5 Avenue NEW-YORK, USA", Closed = new DateTime(2020, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), IsClosed = true, Open = new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Local), UserId = new Guid("20f75b70-78c4-4931-9742-54b2fd8206a8") }
+                        new { IdAccount = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"), BillAddress = "2 Avenue NEW-YORK, USA", Closed = new DateTime(2020, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), IsClosed = true, Open = new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Local), UserId = new Guid("597312d2-fb01-4cfa-bdcf-6a3fe5d727f9") }
                     );
                 });
 
@@ -90,9 +92,9 @@ namespace Model.Migrations
                     b.Property<Guid>("IdBasketItems")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("ArticleId");
+                    b.Property<Guid?>("ArticleIdArticle");
 
-                    b.Property<Guid>("BasketId");
+                    b.Property<Guid?>("BasketId");
 
                     b.Property<int>("Quantity");
 
@@ -100,7 +102,7 @@ namespace Model.Migrations
 
                     b.HasKey("IdBasketItems");
 
-                    b.HasIndex("ArticleId");
+                    b.HasIndex("ArticleIdArticle");
 
                     b.HasIndex("BasketId");
 
@@ -132,7 +134,7 @@ namespace Model.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
 
                     b.HasData(
-                        new { UserId = new Guid("20f75b70-78c4-4931-9742-54b2fd8206a8"), Address = "2 Avenue NEW-YORK, USA", Country = "USA", FirstName = "John", LastName = "Smith", Mail = "smith@john.com" }
+                        new { UserId = new Guid("597312d2-fb01-4cfa-bdcf-6a3fe5d727f9"), Address = "2 Avenue NEW-YORK, USA", Country = "USA", FirstName = "John", LastName = "Smith", Mail = "smith@john.com" }
                     );
                 });
 
@@ -178,13 +180,11 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.Models.Article", "Article")
                         .WithMany()
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArticleIdArticle");
 
                     b.HasOne("Model.Models.Basket", "Basket")
                         .WithMany("BasketItems")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BasketId");
                 });
 #pragma warning restore 612, 618
         }

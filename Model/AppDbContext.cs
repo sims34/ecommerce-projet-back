@@ -31,8 +31,8 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            new SeedContextArticle(modelBuilder.Entity<Article>());
-            
+            new SeedContextArticle(modelBuilder);
+            new SeedContextAccount(modelBuilder);
         }
     }
 }

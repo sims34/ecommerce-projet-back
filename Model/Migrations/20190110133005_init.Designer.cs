@@ -9,7 +9,7 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181226151111_init")]
+    [Migration("20190110133005_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,8 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Models.Account", b =>
                 {
-                    b.Property<Guid>("IdAccount");
+                    b.Property<Guid>("IdAccount")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("BillAddress");
 
@@ -31,9 +32,17 @@ namespace Model.Migrations
 
                     b.Property<DateTime>("Open");
 
+                    b.Property<Guid>("UserId");
+
                     b.HasKey("IdAccount");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Account");
+
+                    b.HasData(
+                        new { IdAccount = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"), BillAddress = "2 Avenue NEW-YORK, USA", Closed = new DateTime(2020, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), IsClosed = true, Open = new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Local), UserId = new Guid("86683ff3-824e-410f-ab95-8035ba09ead4") }
+                    );
                 });
 
             modelBuilder.Entity("Model.Models.Article", b =>
@@ -58,9 +67,45 @@ namespace Model.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("Model.Models.Basket", b =>
+                {
+                    b.Property<Guid>("BasketId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("AccountIdAccount");
+
+                    b.HasKey("BasketId");
+
+                    b.HasIndex("AccountIdAccount");
+
+                    b.ToTable("Basket");
+                });
+
+            modelBuilder.Entity("Model.Models.BasketItems", b =>
+                {
+                    b.Property<Guid>("IdBasketItems")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("ArticleIdArticle");
+
+                    b.Property<Guid?>("BasketId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int>("UnitePrice");
+
+                    b.HasKey("IdBasketItems");
+
+                    b.HasIndex("ArticleIdArticle");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("BasketItems");
+                });
+
             modelBuilder.Entity("Model.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -76,11 +121,15 @@ namespace Model.Migrations
 
                     b.Property<string>("Mail");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
+
+                    b.HasData(
+                        new { UserId = new Guid("86683ff3-824e-410f-ab95-8035ba09ead4"), Address = "2 Avenue NEW-YORK, USA", Country = "USA", FirstName = "John", LastName = "Smith", Mail = "smith@john.com" }
+                    );
                 });
 
             modelBuilder.Entity("Model.Models.Admin", b =>
@@ -109,9 +158,27 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.Models.Account", b =>
                 {
                     b.HasOne("Model.Models.User", "User")
-                        .WithOne("Account")
-                        .HasForeignKey("Model.Models.Account", "IdAccount")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Model.Models.Basket", b =>
+                {
+                    b.HasOne("Model.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountIdAccount");
+                });
+
+            modelBuilder.Entity("Model.Models.BasketItems", b =>
+                {
+                    b.HasOne("Model.Models.Article", "Article")
+                        .WithMany()
+                        .HasForeignKey("ArticleIdArticle");
+
+                    b.HasOne("Model.Models.Basket", "Basket")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("BasketId");
                 });
 #pragma warning restore 612, 618
         }

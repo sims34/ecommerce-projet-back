@@ -13,8 +13,6 @@ namespace Repository.Interfaces
 
         T Find(Guid id);
 
-        T FindById(int id);
-
         bool Update(Guid id,T entity);
 
         bool Remove(T entity);

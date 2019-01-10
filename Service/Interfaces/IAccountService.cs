@@ -5,9 +5,7 @@ using System.Text;
 
 namespace Service.Interfaces
 {
-    public interface IArticleService : IServiceBase<Article>
+    public interface IAccountService : IServiceBase<Account>
     {
-        bool RemoveById(Guid id);
-        //Article GetArticle(Guid id);
     }
 }

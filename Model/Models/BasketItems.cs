@@ -8,10 +8,12 @@ namespace Model.Models
     public class BasketItems
     {
         [Key]
-        public int IdBasketItems { get; set; }
+        public Guid IdBasketItems { get; set; }
         public int UnitePrice { get; set; }
         public int Quantity { get; set; }
+        public Guid ArticleId { get; set; }
         public Article Article { get; set; }
+        public Guid BasketId { get; set; }
         public Basket Basket { get; set; }
     }
 }
