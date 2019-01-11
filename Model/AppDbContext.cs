@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using E_commerceProject;
+using Microsoft.EntityFrameworkCore;
 using Model.Models;
 using System;
 
@@ -33,6 +34,7 @@ namespace Model
         {
             new SeedContextArticle(modelBuilder);
             new SeedContextAccount(modelBuilder);
+            new SeedContextBasket(modelBuilder);
         }
     }
 }

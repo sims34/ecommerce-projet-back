@@ -12,7 +12,7 @@ namespace E_commerceProject
 {
         public SeedContextBasket(ModelBuilder modelBuilder)
         {
-            var basketId = Guid.NewGuid();
+           
             var jojo = new User
             {
                 UserId = Guid.NewGuid(),
@@ -24,7 +24,7 @@ namespace E_commerceProject
             };
             var account = new Account
             {
-               IdAccount = Guid.NewGuid(),
+                IdAccount = Guid.NewGuid(),
                 BillAddress = "5 Avenue NEW-YORK, USA",
                 IsClosed = true,
                 Open = DateTime.Today,
@@ -41,6 +41,16 @@ namespace E_commerceProject
                 Description = "Poterit ut Antiochensi dispelleret Antiochensi ut obsecranti principibus victu adesset.",
                 DelievryTime = 3
             };
+
+            var basket = new Basket
+            {
+                BasketId = Guid.NewGuid(),
+                AccountId = account.IdAccount,
+            };
+
+            modelBuilder.Entity<Basket>().HasData(basket);
+
+
             List<BasketItems> basketItems = new List<BasketItems>
             {
                  new BasketItems
@@ -49,8 +59,8 @@ namespace E_commerceProject
                      UnitePrice= 12,
                      Quantity = 4,
                      ArticleId   = toto.IdArticle,
-                     BasketId = basketId,
-                   
+                     BasketId =  basket.BasketId,
+
                 },
                  new BasketItems
                  {
@@ -58,7 +68,7 @@ namespace E_commerceProject
                      UnitePrice= 190,
                      Quantity = 8,
                      ArticleId   = toto.IdArticle,
-                     BasketId = basketId,
+                     BasketId = basket.BasketId,
 
                 },
                  new BasketItems
@@ -67,19 +77,12 @@ namespace E_commerceProject
                      UnitePrice= 1200,
                      Quantity = 40,
                      ArticleId   = toto.IdArticle,
-                     BasketId = basketId,
+                     BasketId =  basket.BasketId,
 
                 }
             };
-            var basket = new Basket
-            {
-                BasketId = basketId,
-                Account = account,
-                BasketItems = basketItems
-            };
-
-            modelBuilder.Entity<Basket>().HasData(basket);
+            modelBuilder.Entity<BasketItems>().HasData(basketItems);
 
         }
-}
+    }
 }

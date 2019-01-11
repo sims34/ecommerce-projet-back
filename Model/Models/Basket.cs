@@ -11,6 +11,7 @@ namespace Model.Models
         [Key]
         //[ForeignKey("Account")]
         public Guid BasketId { get; set; }
+        public Guid AccountId { get; set; }
         public Account Account { get; set; }
         public List<BasketItems> BasketItems { get; set; }
         public int TotalItems => BasketItems == null ? 0 : BasketItems.Sum(x => x.Quantity);
