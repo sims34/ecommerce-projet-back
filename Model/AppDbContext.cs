@@ -15,6 +15,8 @@ namespace Model
         public DbSet<Basket> Basket { get; set; }
         public DbSet<BasketItems> BasketItems { get; set; }
         public DbSet<Account> Account { get; set; }
+        public DbSet<InventoryItem> InventoryItem { get; set; }
+        public DbSet<InventorySystem>  InventorySystem { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

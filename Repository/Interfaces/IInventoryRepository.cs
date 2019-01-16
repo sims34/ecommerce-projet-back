@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Repository.Interfaces
 {
-    public interface IInventoryRepository : IRepositoryBase<Inventory>
+    public interface IInventoryRepository :  IRepositoryBase<InventoryItem>
     {
-
+        void AddArticle(Article article, int quantityToAdd);
+       
     }
 }
