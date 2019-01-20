@@ -5,7 +5,7 @@ using System.Text;
 namespace Model.Models
 {
 
-    class Login
+    public class Login
     {
         public Guid LoginId {get; set; }
         public Guid UserId { get; set; }

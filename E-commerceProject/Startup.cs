@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Model;
 using Model.Models;
 using Repository;
@@ -45,16 +48,44 @@ namespace E_commerceProject
             // services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             new DependenceInjection(services);
-            
 
+            SetupAuth(services);
+            SetupGoogleAuth(services);
             //swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("V0.0.1", new Info { Title = "E-Shop", Version = "V0.0.1" });
             });
         }
+        //method auth
+        private void SetupAuth(IServiceCollection services)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:key"]))
 
-
+                };
+            });
+        }
+        //Auth with google API
+        private void SetupGoogleAuth(IServiceCollection services)
+        {
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+             googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+             googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+                    
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IHostingEnvironment env, IApplicationBuilder app)
         {
@@ -68,6 +99,7 @@ namespace E_commerceProject
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
 
             // Enable Swagger JSON endpoint.

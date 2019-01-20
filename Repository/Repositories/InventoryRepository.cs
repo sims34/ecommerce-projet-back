@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Repository.Repositories
 {
-    public class InventoryRepository : RepositoryBase<InventoryItem>, IInventoryRepository
+    public class InventoryRepository : RepositoryBase<InventorySystem>, IInventoryRepository
     {
         public InventoryRepository(AppDbContext context) : base(context)
         {
@@ -17,24 +17,24 @@ namespace Repository.Repositories
 
         
 
-        public void AddArticle(Article article, int quantityToAdd)
-        {
-            while (quantityToAdd > 0)
-            {
-                var articleExist = _context.Articles.FirstOrDefault(x => x.IdArticle == article.IdArticle);
-                if (articleExist == null)
-                {
-                    var obj = new InventoryItem(article, quantityToAdd);
-                    _context.Add(obj);
-                    _context.SaveChanges();
-                }
-                else
-                {
-                   var inventoryItem = _context.InventoryItem;
-                }
-            }
+        //public void AddArticle(Article article, int quantityToAdd)
+        //{
+        //    while (quantityToAdd > 0)
+        //    {
+        //        var articleExist = _context.Articles.FirstOrDefault(x => x.IdArticle == article.IdArticle);
+        //        if (articleExist == null)
+        //        {
+        //            var obj = new InventoryItem(article, quantityToAdd);
+        //            _context.Add(obj);
+        //            _context.SaveChanges();
+        //        }
+        //        else
+        //        {
+        //           var inventoryItem = _context.InventoryItem;
+        //        }
+        //    }
 
-        }
+        //}
         
     }
 }
