@@ -6,7 +6,6 @@ namespace Model.Models
 {
     public class Admin : User
     {
-        public string Username { get; set; }
-        public int login { get; set; }
+        
     }
 }

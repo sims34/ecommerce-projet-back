@@ -15,10 +15,12 @@ namespace E_commerceProject.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IArticleService _articleService;
+        private readonly IInventoryService _inventoryService;
 
-        public ArticleController(IArticleService articleService)
+        public ArticleController(IArticleService articleService, IInventoryService inventoryService)
         {
             this._articleService = articleService;
+            _inventoryService = inventoryService;
         }
         [HttpGet]
         public ActionResult<List<Article>> Get()
@@ -38,7 +40,12 @@ namespace E_commerceProject.Controllers
         public IActionResult Post([FromBody] Article article)
         {
             _articleService.Add(article);
-            _articleService.SaveChanges();
+            //InventoryItem inventory = new InventoryItem
+            //{
+            //    InventoryItemId = Guid.NewGuid();
+            //    Article = article
+            //}
+            //_inventoryService.Add();
             return Created("", "Article Created !");
 
         }

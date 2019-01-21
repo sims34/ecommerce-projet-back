@@ -6,14 +6,17 @@ namespace Model.Models
     public class User
     {
         [Key]
-        public Guid   UserId { get; set; }
-        public String FirstName { get; set; }
-        public String LastName { get; set; }
-        public string Mail { get; set; }
-        public string Address { get; set; }
-        public string Country { get; set; }
+        protected Guid   UserId { get; set; }
+        protected String FirstName { get; set; }
+        protected String LastName { get; set; }
+       
         public string FullName => $"{FirstName} {LastName}";
-
-        //public  Account Account { get; set; }
+        
+        public User(string _firstName, string _lastName)
+        {
+            UserId = Guid.NewGuid();
+            FirstName = _firstName;
+            LastName = _firstName;
+        }
     }
 }

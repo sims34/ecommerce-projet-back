@@ -9,7 +9,6 @@ namespace Model
     {
 
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Admin> Admin { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Basket> Basket { get; set; }
@@ -37,6 +36,7 @@ namespace Model
             new SeedContextArticle(modelBuilder);
             new SeedContextAccount(modelBuilder);
             new SeedContextBasket(modelBuilder);
+            new SeedContextCustomer(modelBuilder);
         }
     }
 }

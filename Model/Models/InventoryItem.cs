@@ -13,6 +13,6 @@ namespace Model.Models
         public int Quantity { get; set; }
         //public InventorySystem InventorySystem { get; set; }
         public void AddToQuantity(int AmountQuantity) => Quantity += AmountQuantity;
-
+            
     }
 }

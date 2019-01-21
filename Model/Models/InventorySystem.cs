@@ -10,7 +10,9 @@ namespace Model.Models
     {
         [Key]
         public Guid InventorySysID { get; set; }
-        public List<InventoryItem> InventoryItems { get; set; }
-        public int TotalInventory => InventoryItems == null ? 0 : InventoryItems.Sum(x => x.Quantity);
+        public Article Article { get; set; }
+        public int Quantity { get; set; }
+        public DateTime DateInventory { get; set; }
     }
+
 }

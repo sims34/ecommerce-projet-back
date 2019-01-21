@@ -74,5 +74,16 @@ namespace Repository.Repositories
             }
             return false;
         }
+        public override void Add(Article entity)
+        {
+            var article = base.Find(entity.IdArticle);
+
+            if (article == null)
+            {
+                entity.IdArticle = Guid.NewGuid();
+                _context.SaveChanges();
+            }
+
+        }
     }
 }
