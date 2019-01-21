@@ -28,8 +28,9 @@ namespace Repository.Repositories
                     _context.SaveChanges();
 
                 }
-                articleExist.Quantity += entity.Quantity;
+                articleExist.AddToQuantity(entity.Quantity);
                 articleExist.Date = entity.Date;
+                _context.SaveChanges();
             }
 
         }

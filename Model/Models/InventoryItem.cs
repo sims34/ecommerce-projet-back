@@ -14,16 +14,5 @@ namespace Model.Models
         //public InventorySystem InventorySystem { get; set; }
         public void AddToQuantity(int AmountQuantity) => Quantity += AmountQuantity;
 
-        public InventoryItem()
-        {
-
-        }
-        public InventoryItem(Article article, int qtity)
-        {
-            InventoryItemId = Guid.NewGuid();
-            Article = article;
-            Quantity = qtity;
-        }
-
     }
 }

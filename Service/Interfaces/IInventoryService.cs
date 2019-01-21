@@ -7,5 +7,6 @@ namespace Service.Interfaces
 {
     public interface IInventoryService : IServiceBase<InventoryItem>
     {
+
     }
 }

@@ -26,6 +26,8 @@ namespace E_commerceProject
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IInventoryService, InventoryService>();
         }
     }
 }
