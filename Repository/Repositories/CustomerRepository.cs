@@ -14,9 +14,15 @@ namespace Service
         {
         }
 
-        public Customer GetCustomerByName(string name)
+        public string GetFullName(User customer)
         {
-            return null;
+            return customer.FullName;
         }
+
+        public override void Add(Customer entity)
+        {
+           
+        }
+
     }
 }

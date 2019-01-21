@@ -18,7 +18,12 @@ namespace Repository.Repositories
        
         public override Article Find(Guid id)
         {
-            return base._context.Articles.FirstOrDefault(x => x.IdArticle == id);
+            var article =  _context.Articles.FirstOrDefault(x => x.IdArticle == id);
+            if (article != null)
+            {
+                return article;
+            }
+            return null;
         }
 
         public override bool Remove(Article entity)
@@ -80,7 +85,7 @@ namespace Repository.Repositories
 
             if (article == null)
             {
-                entity.IdArticle = Guid.NewGuid();
+                base.Add(entity);
                 _context.SaveChanges();
             }
 

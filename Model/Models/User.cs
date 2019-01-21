@@ -14,7 +14,6 @@ namespace Model.Models
         
         public User(string _firstName, string _lastName)
         {
-            UserId = Guid.NewGuid();
             FirstName = _firstName;
             LastName = _firstName;
         }

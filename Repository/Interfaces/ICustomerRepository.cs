@@ -10,6 +10,6 @@ namespace Service.Interfaces
     public interface ICustomerRepository : IRepositoryBase<Customer>
     {
         //set specific method to Customer service
-        Customer GetCustomerByName(String name);
+        string GetFullName(User customer);
     }
 }
