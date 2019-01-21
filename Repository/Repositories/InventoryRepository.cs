@@ -9,32 +9,36 @@ using System.Text;
 
 namespace Repository.Repositories
 {
-    public class InventoryRepository : RepositoryBase<InventorySystem>, IInventoryRepository
+    public class InventoryRepository : RepositoryBase<InventoryItem>, IInventoryRepository
     {
         public InventoryRepository(AppDbContext context) : base(context)
         {
         }
 
-        
 
-        //public void AddArticle(Article article, int quantityToAdd)
-        //{
-        //    while (quantityToAdd > 0)
-        //    {
-        //        var articleExist = _context.Articles.FirstOrDefault(x => x.IdArticle == article.IdArticle);
-        //        if (articleExist == null)
-        //        {
-        //            var obj = new InventoryItem(article, quantityToAdd);
-        //            _context.Add(obj);
-        //            _context.SaveChanges();
-        //        }
-        //        else
-        //        {
-        //           var inventoryItem = _context.InventoryItem;
-        //        }
-        //    }
+        public override void Add(InventoryItem entity)
+        {
+            while (entity.Quantity > 0)
+            {
+                var articleExist = _context.InventoryItem.Include("Article").FirstOrDefault(x => x.Article.IdArticle == entity.Article.IdArticle);
+                if (articleExist == null)
+                {
+                    var newArticle = entity;
+                    _context.Add(entity);
+                    _context.SaveChanges();
 
-        //}
-        
+                }
+                articleExist.Quantity += entity.Quantity;
+                articleExist.Date = entity.Date;
+            }
+
+        }
+        public override InventoryItem Find(Guid id)
+        {
+            var ArticleItem = _context.Articles.Find(id);
+            var Inventory = _context.InventoryItem.Include("Article").FirstOrDefault(x => x.Article.IdArticle == ArticleItem.IdArticle);
+            return Inventory;
+        }
     }
-}
+    }
+

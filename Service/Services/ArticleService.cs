@@ -16,6 +16,8 @@ namespace Service.Services
             _articleRepository = repo;
         }
 
+        public IArticleRepository Object => throw new NotImplementedException();
+
         public override void Add(Article entity)
         {
             base.Add(entity);
