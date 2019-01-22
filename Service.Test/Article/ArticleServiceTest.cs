@@ -20,7 +20,7 @@ namespace Repository.Test
         {
             _articleRepository = new Mock<IArticleRepository>();
             _articleService = new Mock<IArticleService>();
-             _articleController = new ArticleController(_articleService.Object);
+             //_articleController = new ArticleController(_articleService);
         }
         [TestMethod]
         public void GivenArticleObject_WhenAddingNewArticle_ThenArticle()

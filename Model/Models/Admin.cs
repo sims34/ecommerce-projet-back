@@ -6,6 +6,6 @@ namespace Model.Models
 {
     public class Admin : User
     {
-        
+        public Admin(string _firstName,string _lastName) : base(_firstName, _lastName) { }
     }
 }

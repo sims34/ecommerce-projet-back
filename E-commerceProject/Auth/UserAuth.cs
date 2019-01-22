@@ -24,19 +24,13 @@ namespace E_commerceProject.Auth
 
         public Login Authenticate(Login login)
         {
-            return new Login()
-            {
-              LoginId = Guid.NewGuid(),
-              UserId  = Guid.NewGuid(),
-              Password  = "sisisi",
-              Username = "sims"
-            };
+            return new Login("sisisi", "sims");
         }
         public string BuildToken(Login login)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.FamilyName, login.Username),
+                new Claim(JwtRegisteredClaimNames.Sub, login.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, login.UserId.ToString())
             };
 

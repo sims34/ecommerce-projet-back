@@ -40,12 +40,6 @@ namespace E_commerceProject.Controllers
         public IActionResult Post([FromBody] Article article)
         {
             _articleService.Add(article);
-            //InventoryItem inventory = new InventoryItem
-            //{
-            //    InventoryItemId = Guid.NewGuid();
-            //    Article = article
-            //}
-            //_inventoryService.Add();
             return Created("", "Article Created !");
 
         }

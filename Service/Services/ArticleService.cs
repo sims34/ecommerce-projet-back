@@ -16,22 +16,7 @@ namespace Service.Services
             _articleRepository = repo;
         }
 
-        public IArticleRepository Object => throw new NotImplementedException();
-
-        public override void Add(Article entity)
-        {
-            base.Add(entity);
-            //var AddEntity = base.Find(entity.IdArticle);
-            //if(AddEntity == null)
-            //{
-            //}
-        }
-        //public  virtual Article GetArticle(Guid id)
-        //{
-        //    return _articleRepository.Find(id);
-        //}
-
-        public virtual bool RemoveById(Guid id)
+        public  bool RemoveById(Guid id)
         {
             _articleRepository.RemoveById(id);
             return true;

@@ -10,15 +10,8 @@ namespace Model.Factories
         
         public static Account[] DefaultAccount()
         {
-            var johnSmith = new User
-            {
-                UserId = Guid.NewGuid(),
-                FirstName = "John",
-                LastName = "Smith",
-                Mail = "smith@john.com",
-                Address = "2 Avenue NEW-YORK, USA",
-                Country = "USA"
-            };
+            var johnSmith = new Customer("John", "Smith", "smith@john.com", "2 Avenue NEW-YORK, USA", "USA",StatusUser.Active);
+
             Account[] Data = new Account[]
             {
                 new Account

@@ -17,8 +17,8 @@ namespace E_commerceProject
         {
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();

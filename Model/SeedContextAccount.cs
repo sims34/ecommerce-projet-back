@@ -12,17 +12,10 @@ namespace Model
     {
         public SeedContextAccount(ModelBuilder entityBuilder)
         {
-            var johnSmith = new User
-            {
-                UserId = Guid.NewGuid(),
-                FirstName = "John",
-                LastName = "Smith",
-                Mail = "smith@john.com",
-                Address = "2 Avenue NEW-YORK, USA",
-                Country = "USA"
-            };
+            var johnSmith = new Customer("John", "Smith", "smith@john.com", "2 Avenue NEW-YORK, USA", "USA", StatusUser.Active);
 
-            entityBuilder.Entity<User>().HasData(johnSmith);
+
+            entityBuilder.Entity<Customer>().HasData(johnSmith);
 
             entityBuilder.Entity<Account>().HasData(
             new Account

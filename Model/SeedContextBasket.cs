@@ -12,16 +12,9 @@ namespace E_commerceProject
 {
         public SeedContextBasket(ModelBuilder modelBuilder)
         {
-           
-            var jojo = new User
-            {
-                UserId = Guid.NewGuid(),
-                FirstName = "John",
-                LastName = "Smith",
-                Mail = "smith@john.com",
-                Address = "2 Avenue NEW-YORK, USA",
-                Country = "USA"
-            };
+
+            var johnSmith = new Customer("John", "Smith", "smith@john.com", "2 Avenue NEW-YORK, USA", "USA", StatusUser.Active);
+
             var account = new Account
             {
                 IdAccount = Guid.NewGuid(),
@@ -29,7 +22,7 @@ namespace E_commerceProject
                 IsClosed = true,
                 Open = DateTime.Today,
                 Closed = new DateTime(2020, 12, 31),
-                UserId = jojo.UserId
+                UserId = johnSmith.UserId
             };
             var toto = new Article
             {

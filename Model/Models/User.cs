@@ -6,9 +6,9 @@ namespace Model.Models
     public class User
     {
         [Key]
-        protected Guid   UserId { get; set; }
-        protected String FirstName { get; set; }
-        protected String LastName { get; set; }
+        public Guid   UserId { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
        
         public string FullName => $"{FirstName} {LastName}";
         
