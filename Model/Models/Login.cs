@@ -12,6 +12,10 @@ namespace Model.Models
         public User UserId { get; set; }
         public User User { get; set; }
 
+        public Login()
+        {
+
+        }
         public Login(string _password,string _username)
         {
             Password = _password;

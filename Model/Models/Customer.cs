@@ -21,8 +21,12 @@ namespace Model.Models
             public Login Login { get; set; }
             public StatusUser Status { get; set; }
             
-            
-            public Customer(string _firstName, string _lastName,string _mail, string _address, string _country, StatusUser _statusUser)
+            public Customer()
+            {
+
+            }
+            public Customer(string _firstName, string _lastName,string _mail, string _address, string _country, 
+                            StatusUser _statusUser)
                             : base(_firstName, _lastName)
                               
             {

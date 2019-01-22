@@ -15,12 +15,12 @@ namespace E_commerceProject.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IArticleService _articleService;
-        private readonly IInventoryService _inventoryService;
+        //private readonly IInventoryService _inventoryService;
 
-        public ArticleController(IArticleService articleService, IInventoryService inventoryService)
+        public ArticleController(IArticleService articleService)
         {
             this._articleService = articleService;
-            _inventoryService = inventoryService;
+           
         }
         [HttpGet]
         public ActionResult<List<Article>> Get()

@@ -35,16 +35,18 @@ namespace E_commerceProject
                 DelievryTime = 3
             };
 
+
+            modelBuilder.Entity<Account>().HasData(account);
+
             var basket = new Basket
             {
                 BasketId = Guid.NewGuid(),
                 AccountId = account.IdAccount,
             };
-
             modelBuilder.Entity<Basket>().HasData(basket);
 
 
-            List<BasketItems> basketItems = new List<BasketItems>
+            var basketItems = new BasketItems[]
             {
                  new BasketItems
                  {
@@ -53,8 +55,7 @@ namespace E_commerceProject
                      Quantity = 4,
                      ArticleId   = toto.IdArticle,
                      BasketId =  basket.BasketId,
-
-                },
+                 },
                  new BasketItems
                  {
                      IdBasketItems = Guid.NewGuid(),

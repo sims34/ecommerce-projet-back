@@ -16,6 +16,6 @@ namespace Model.Models
         public bool Activate { get; set; }
         public int DelievryTime { get; set; }
         //   public String ImgUrl { get; set; }
-        public int priceTTC => PriceHT * Tax;
+        public int PriceTTC => PriceHT + PriceHT * (Tax / 100);
     }
 }
