@@ -22,7 +22,7 @@ namespace Model.Models
             public StatusUser Status { get; set; }
 
             //public Guid LoginId { get; set; }
-        //  public  Login Login { get; set; }
+          public  Login Login { get; set; }
 
         //[ForeignKey("Account")]
         //public Guid AccountId { get; set; }
