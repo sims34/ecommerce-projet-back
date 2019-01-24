@@ -22,22 +22,24 @@ namespace E_commerceProject.Controllers
         }
         // GET: api/Basket
         [HttpGet]
-        public List<Basket> Get()
+        public ActionResult<List<Basket>> Get()
         {
             return _basketService.GetAll();
         }
 
         // GET: api/Basket/5
-        [HttpGet("{id}", Name = "Get")]
-        public Basket Get(Guid id)
+        [HttpGet("{id}")]
+        public ActionResult<Basket> Get(Guid id)
         {
             return _basketService.Find(id);
         }
 
         // POST: api/Basket
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Basket value)
         {
+            _basketService.Add(value);
+            return Created("", "Basket Created !");
         }
 
         // PUT: api/Basket/5

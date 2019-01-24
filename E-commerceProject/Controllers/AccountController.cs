@@ -18,7 +18,7 @@ namespace E_commerceProject.Controllers
 
         public AccountController(IAccountService account)
         {
-
+            _accountService = account;
         }
         // GET: api/Account
         [HttpGet]
@@ -36,8 +36,10 @@ namespace E_commerceProject.Controllers
 
         // POST: api/Account
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Account account)
         {
+            _accountService.Add(account);
+            return Created("", "Account Created !");
         }
 
         // PUT: api/Account/5

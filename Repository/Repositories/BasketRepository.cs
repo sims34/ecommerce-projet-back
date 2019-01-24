@@ -32,18 +32,6 @@ namespace Repository.Repositories
             _context.Add(basketItem);
             _context.SaveChanges();
 
-            /* check service
-            _items = GetBasketItems(basketId);
-
-            Items = _items.AsReadOnly();
-
-            if (!Items.Any(i => i.IdBasketItems == basketItems.IdBasketItems))
-            {
-                _items.Add(basketItems);
-                return;
-            }
-            var existingItem = _items.FirstOrDefault(i => i.IdBasketItems == basketItems.IdBasketItems);
-            existingItem.Quantity += basketItems.Quantity;*/
         }
 
        

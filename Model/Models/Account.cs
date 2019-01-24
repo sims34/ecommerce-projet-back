@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
 {
@@ -11,7 +12,12 @@ namespace Model.Models
         public bool IsClosed { get; set; }
         public DateTime Open { get; set; }
         public DateTime Closed { get; set; }
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+
+        [ForeignKey("Customer")]
+        public Guid CustomerId { get; set; }
+        public virtual Customer  Customer { get; set; }
+
+        //public Guid BasketId { get; set; }
+        public  Basket Basket { get; set; }
     }
 }

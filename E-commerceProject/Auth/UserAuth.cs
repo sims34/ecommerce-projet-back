@@ -24,14 +24,19 @@ namespace E_commerceProject.Auth
 
         public Login Authenticate(Login login)
         {
-            return new Login("sisisi", "sims");
+            //var user = new Customer("John", "Malkovitch", "abc@gmail.com", "5 AV NEW-YORK", "USA", StatusUser.New);
+            return new Login
+            {
+                Password = "admin",
+                Username = "admin"
+            };
         }
         public string BuildToken(Login login)
         {
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, login.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, login.UserId.ToString())
+                //new Claim(JwtRegisteredClaimNames.Jti, login.Customer.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

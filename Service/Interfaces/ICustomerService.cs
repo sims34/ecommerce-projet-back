@@ -9,7 +9,6 @@ namespace Service.Interfaces
 {
     public interface ICustomerService : IServiceBase<Customer>
     {
-        // method relative to service 
-        String SetNameShort(Customer customer);
+        
     }
 }

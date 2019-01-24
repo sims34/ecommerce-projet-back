@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
 {
@@ -9,17 +10,13 @@ namespace Model.Models
         public Guid   UserId { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
-       
+        
         public string FullName => $"{FirstName} {LastName}";
 
         public User()
         {
 
         }
-        public User(string _firstName, string _lastName)
-        {
-            FirstName = _firstName;
-            LastName = _firstName;
+           
         }
-    }
 }

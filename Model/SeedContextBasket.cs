@@ -12,21 +12,51 @@ namespace E_commerceProject
 {
         public SeedContextBasket(ModelBuilder modelBuilder)
         {
+            var johnSmith = new Customer
+            {
+                UserId = Guid.NewGuid(),
+                FirstName = "John",
+                LastName = "Smith",
+                Mail = "smith@john.com",
+                Address = "2 Avenue NEW-YORK, USA",
+                Country = "USA",
+                Status = StatusUser.Active,
 
-            var johnSmith = new Customer("John", "Smith", "smith@john.com", "2 Avenue NEW-YORK, USA", "USA", StatusUser.Active);
+            };
+            modelBuilder.Entity<Customer>().HasData(johnSmith);
 
+            var login = new Login
+            {
+                LoginId = Guid.NewGuid(),
+                Password = "admin",
+                Username = "admin",
+                Customer = johnSmith
+            };
+
+            modelBuilder.Entity<Login>().HasData(login);
             var account = new Account
             {
                 IdAccount = Guid.NewGuid(),
-                BillAddress = "5 Avenue NEW-YORK, USA",
+                BillAddress = "5 avenue new-york, usa",
                 IsClosed = true,
                 Open = DateTime.Today,
                 Closed = new DateTime(2020, 12, 31),
-                UserId = johnSmith.UserId
+                Customer = johnSmith,
             };
+
+            modelBuilder.Entity<Account>().HasData(account);
+
+            var basket = new Basket
+            {
+                BasketId = Guid.NewGuid(),
+                AccountId =account.IdAccount,
+            };
+
+       
+
             var toto = new Article
             {
-                IdArticle = new Guid("78ace119-29bc-4903-a68f-fa10db32bcbf"),
+                IdArticle = Guid.NewGuid(),
                 PriceHT = 12,
                 Tax = 3,
                 Activate = true,
@@ -35,15 +65,7 @@ namespace E_commerceProject
                 DelievryTime = 3
             };
 
-
-            modelBuilder.Entity<Account>().HasData(account);
-
-            var basket = new Basket
-            {
-                BasketId = Guid.NewGuid(),
-                AccountId = account.IdAccount,
-            };
-            modelBuilder.Entity<Basket>().HasData(basket);
+            modelBuilder.Entity<Article>().HasData(toto);
 
 
             var basketItems = new BasketItems[]
@@ -54,28 +76,31 @@ namespace E_commerceProject
                      UnitePrice= 12,
                      Quantity = 4,
                      ArticleId   = toto.IdArticle,
-                     BasketId =  basket.BasketId,
+                      BasketId =  basket.BasketId,
                  },
                  new BasketItems
                  {
                      IdBasketItems = Guid.NewGuid(),
                      UnitePrice= 190,
                      Quantity = 8,
-                     ArticleId   = toto.IdArticle,
-                     BasketId = basket.BasketId,
-
+                        ArticleId   = toto.IdArticle,
+                    BasketId =  basket.BasketId,
                 },
                  new BasketItems
                  {
                      IdBasketItems = Guid.NewGuid(),
                      UnitePrice= 1200,
                      Quantity = 40,
-                     ArticleId   = toto.IdArticle,
+                         ArticleId   = toto.IdArticle,
                      BasketId =  basket.BasketId,
 
                 }
             };
+
             modelBuilder.Entity<BasketItems>().HasData(basketItems);
+
+            modelBuilder.Entity<Basket>().HasData(basket);
+
 
         }
     }

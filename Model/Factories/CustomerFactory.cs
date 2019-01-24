@@ -10,16 +10,52 @@ namespace Model.Factories
 
         public static Customer[] DefaultCustomer = new Customer[]
         {
-            new Customer("John", "Malkovitch","abc@gmail.com","5 AV NEW-YORK","USA", StatusUser.New),
-      
-            new Customer("Brad", "Pitt","abc@gmail.com","5 AV LOS-YORK","FR", StatusUser.Active),
-           
-            new Customer("Jessica", "Alba","abc@gmail.com","5 AV PARIS-YORK","GER", StatusUser.Blocked),
-           
-            new Customer("Jessica", "Alba","abc@gmail.com","5 AV PARIS-YORK","GER", StatusUser.Blocked),
+            new Customer
+            {
+                UserId = Guid.NewGuid(),
+                FirstName = "JOJO",
+                LastName = "Smith",
+                Mail = "smith@john.com",
+                Address = "2 Avenue NEW-YORK, USA",
+                Country = "USA",
+                Status = StatusUser.Active,
 
-            new Customer("Admin", "User","abc@gmail.com","5 AV PARIS-YORK","GER", StatusUser.Admin),
+            },
+             new Customer
+            {
+                UserId = Guid.NewGuid(),
+                FirstName = "MAMA",
+                LastName = "Smith",
+                Mail = "smith@john.com",
+                Address = "2 Avenue NEW-YORK, USA",
+                Country = "USA",
+                Status = StatusUser.Active,
 
-        };
+            },
+              new Customer
+            {
+                UserId = Guid.NewGuid(),
+                FirstName = "MAMI",
+                LastName = "Smith",
+                Mail = "smith@john.com",
+                Address = "2 Avenue NEW-YORK, USA",
+                Country = "USA",
+                Status = StatusUser.Active,
+
+            },
+               new Customer
+            {
+                UserId = Guid.NewGuid(),
+                FirstName = "JAJAJ",
+                LastName = "Smith",
+                Mail = "smith@john.com",
+                Address = "2 Avenue NEW-YORK, USA",
+                Country = "USA",
+                Status = StatusUser.Active,
+
+            },
+
+
+    };
     }
 }

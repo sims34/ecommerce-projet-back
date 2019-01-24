@@ -8,6 +8,7 @@ using Service.Interfaces;
 
 namespace E_commerceProject.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -21,16 +22,16 @@ namespace E_commerceProject.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<Customer>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _customerService.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Customer> Get(Guid id)
         {
-            return "value";
+            return _customerService.Find(id);
             
         }
 
@@ -38,12 +39,7 @@ namespace E_commerceProject.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Customer customer) 
         {
-            //var customer = new Customer
-            //{
-            //    Id = "40e1c7fb-000d-432a-9ef1-ec8fe6decf0f",
-            //    FirstName = "Simon",
-            //    LastName = "Bens"
-            //};
+            
             this._customerService.Add(customer);
             
             
@@ -53,14 +49,16 @@ namespace E_commerceProject.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] Customer customer)
         {
+            _customerService.Update(id, customer);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Customer customer)
         {
+            _customerService.Remove(customer);
         }
     }
 }

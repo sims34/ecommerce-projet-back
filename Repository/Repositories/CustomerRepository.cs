@@ -37,7 +37,6 @@ namespace Service
                 base.Remove(entity);
                 base.SaveChanges();
                 return true;
-
             }
             return false;
         }
@@ -57,21 +56,6 @@ namespace Service
             }
             return false;
         }
-
-        //public bool UpdateLogin(Customer customer)
-        //{
-        //    var UpdateEntity = base.Find(customer.UserId);
-        //    if (UpdateEntity != null)
-        //    {
-        //        UpdateEntity.Password = customer.Password;
-        //        UpdateEntity.Username = customer.Username;
-        //        base.Update(customer.UserId, UpdateEntity);
-        //        base.SaveChanges();
-        //        return true;
-        //    }
-        //    return false;
-
-        //}
         public bool UpdateStatus(Customer customer)
         {
             var UpdateEntity = base.Find(customer.UserId);

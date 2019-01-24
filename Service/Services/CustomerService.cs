@@ -17,17 +17,7 @@ namespace Service
             this._customerRepository = _cr;
         }
 
-        // add some feature on CRUD method into the service
-        public override void Add(Customer entity)
-        {
-            
-        }
-
-        // add CRUD  method
-        public string SetNameShort(Customer customer)
-        {
-            return "Bonjour " + customer.FirstName;
-        }
+       
     }
 
 }

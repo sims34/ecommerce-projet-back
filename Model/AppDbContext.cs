@@ -35,11 +35,11 @@ namespace Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            new SeedContextArticle(modelBuilder);
-            new SeedContextAccount(modelBuilder);
-            new SeedContextBasket(modelBuilder);
-            //new SeedContextCustomer(modelBuilder);
-            // new SeedContextLogin(modelBuilder);
+             new SeedContextArticle(modelBuilder);
+             new SeedContextAccount(modelBuilder);
+            //new SeedContextLogin(modelBuilder);
+             new SeedContextBasket(modelBuilder);
+            new SeedContextCustomer(modelBuilder);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Models;
@@ -37,6 +38,7 @@ namespace E_commerceProject.Controllers
 
         // POST api/values
         [HttpPost]
+        [DisableCors]
         public IActionResult Post([FromBody] Article article)
         {
             _articleService.Add(article);
