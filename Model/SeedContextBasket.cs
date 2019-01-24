@@ -30,7 +30,7 @@ namespace E_commerceProject
                 LoginId = Guid.NewGuid(),
                 Password = "admin",
                 Username = "admin",
-                Customer = johnSmith
+               // Customer = johnSmith
             };
 
             modelBuilder.Entity<Login>().HasData(login);

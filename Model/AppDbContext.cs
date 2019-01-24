@@ -36,10 +36,10 @@ namespace Model
         {
             
              new SeedContextArticle(modelBuilder);
-             new SeedContextAccount(modelBuilder);
+           //  new SeedContextAccount(modelBuilder);
             //new SeedContextLogin(modelBuilder);
-             new SeedContextBasket(modelBuilder);
-            new SeedContextCustomer(modelBuilder);
+           //  new SeedContextBasket(modelBuilder);
+             new SeedContextCustomer(modelBuilder);
         }
     }
 }

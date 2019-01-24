@@ -31,7 +31,7 @@ namespace Model
                 LoginId = Guid.NewGuid(),
                 Password = "admin",
                 Username = "admin",
-                Customer = johnSmith
+             //   Customer = johnSmith
             };
 
            

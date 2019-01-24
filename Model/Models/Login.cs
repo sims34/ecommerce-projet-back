@@ -13,9 +13,9 @@ namespace Model.Models
         public string Password { get; set; }
         public string Username { get; set; }
 
-        [ForeignKey("Customer")]
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        //[ForeignKey("Customer")]
+        //public Guid CustomerId { get; set; }
+        //public Customer Customer { get; set; }
 
         public Login()
         {
