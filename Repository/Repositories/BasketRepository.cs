@@ -25,7 +25,7 @@ namespace Repository.Repositories
                 .FirstOrDefault(b => b.BasketId == id);
         }
 
-        public virtual void AddItems(Guid basketId, BasketItems basketItem)
+        public virtual void AddItems(Guid basketId, BasketItem basketItem)
         {
             var basket = _context.Basket.First(x => x.BasketId == basketId);
             basketItem.Basket = basket;
@@ -36,7 +36,7 @@ namespace Repository.Repositories
 
        
 
-        public virtual List<BasketItems> GetBasketItems(Guid basketId)
+        public virtual List<BasketItem> GetBasketItems(Guid basketId)
         {
             return this.Find(basketId).BasketItems;
         }

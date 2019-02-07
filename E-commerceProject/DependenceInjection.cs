@@ -22,7 +22,7 @@ namespace E_commerceProject
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
-            services.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
+            services.AddScoped<IBasketItemRepository, BasketItemsRepository>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();

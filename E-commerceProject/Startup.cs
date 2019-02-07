@@ -56,6 +56,15 @@ namespace E_commerceProject
             {
                 c.SwaggerDoc("V0.0.1", new Info { Title = "E-Shop", Version = "V0.0.1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
         //method auth
         private void SetupAuth(IServiceCollection services)
@@ -100,6 +109,7 @@ namespace E_commerceProject
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
+            app.UseCors("CorsPolicy");
             app.UseMvc();
 
             // Enable Swagger JSON endpoint.

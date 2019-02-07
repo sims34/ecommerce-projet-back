@@ -27,11 +27,11 @@ namespace Service.Test
         {
             var articleGuid = Guid.NewGuid();
             var basket = new Basket();
-            var bi = new BasketItems()
+            var bi = new BasketItem()
             {
                 Article = new Article() { IdArticle = articleGuid }
             };
-            basket.BasketItems = new List<BasketItems>();
+            basket.BasketItems = new List<BasketItem>();
             basket.BasketItems.Add(bi);
 
             _basketRepository.Setup(x => x.Find(articleGuid)).Returns(basket);
@@ -44,17 +44,17 @@ namespace Service.Test
         {
             var articleGuid = Guid.NewGuid();
             var basket = new Basket();
-            var bi = new BasketItems()
+            var bi = new BasketItem()
             {
                 Article = new Article() { IdArticle = Guid.NewGuid() }
             };
-            basket.BasketItems = new List<BasketItems>();
+            basket.BasketItems = new List<BasketItem>();
             basket.BasketItems.Add(bi);
 
             _basketRepository.Setup(x => x.Find(articleGuid)).Returns(basket);
 
             var res = _basketService.AddItemsToBasket(articleGuid, 
-                new BasketItems()
+                new BasketItem()
                 { Article = new Article() { IdArticle = Guid.NewGuid() } });
             Assert.IsTrue(res);
         }

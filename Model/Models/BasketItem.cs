@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Model.Models
 {
-    public class BasketItems
+    public class BasketItem
     {
         [Key]
         public Guid IdBasketItems { get; set; }

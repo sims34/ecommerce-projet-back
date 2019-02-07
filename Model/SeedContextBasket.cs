@@ -68,9 +68,9 @@ namespace E_commerceProject
             modelBuilder.Entity<Article>().HasData(toto);
 
 
-            var basketItems = new BasketItems[]
+            var basketItems = new BasketItem[]
             {
-                 new BasketItems
+                 new BasketItem
                  {
                      IdBasketItems = Guid.NewGuid(),
                      UnitePrice= 12,
@@ -78,7 +78,7 @@ namespace E_commerceProject
                      ArticleId   = toto.IdArticle,
                       BasketId =  basket.BasketId,
                  },
-                 new BasketItems
+                 new BasketItem
                  {
                      IdBasketItems = Guid.NewGuid(),
                      UnitePrice= 190,
@@ -86,7 +86,7 @@ namespace E_commerceProject
                         ArticleId   = toto.IdArticle,
                     BasketId =  basket.BasketId,
                 },
-                 new BasketItems
+                 new BasketItem
                  {
                      IdBasketItems = Guid.NewGuid(),
                      UnitePrice= 1200,
@@ -97,7 +97,7 @@ namespace E_commerceProject
                 }
             };
 
-            modelBuilder.Entity<BasketItems>().HasData(basketItems);
+            modelBuilder.Entity<BasketItem>().HasData(basketItems);
 
             modelBuilder.Entity<Basket>().HasData(basket);
 

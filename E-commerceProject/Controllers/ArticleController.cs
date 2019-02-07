@@ -12,6 +12,7 @@ namespace E_commerceProject.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
+    
     [ApiController]
     public class ArticleController : ControllerBase
     {
@@ -24,6 +25,7 @@ namespace E_commerceProject.Controllers
            
         }
         [HttpGet]
+        
         public ActionResult<List<Article>> Get()
         {
             return _articleService.GetAll();
@@ -31,6 +33,7 @@ namespace E_commerceProject.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
+
         public ActionResult<Article> Get(Guid id)
         {
             return _articleService.Find(id);
@@ -38,7 +41,7 @@ namespace E_commerceProject.Controllers
 
         // POST api/values
         [HttpPost]
-        [DisableCors]
+        
         public IActionResult Post([FromBody] Article article)
         {
             _articleService.Add(article);
@@ -47,6 +50,7 @@ namespace E_commerceProject.Controllers
         }
         // PUT api/values/5
         [HttpPut("{id}")]
+        
         public IActionResult Put(Guid id, [FromBody] Article article)
         {
             _articleService.Update(id, article);
@@ -55,6 +59,7 @@ namespace E_commerceProject.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        
         public IActionResult Delete(Guid id)
         {
             _articleService.RemoveById(id);

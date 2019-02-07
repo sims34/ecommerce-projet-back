@@ -13,7 +13,7 @@ namespace Model
         public DbSet<Article> Articles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Basket> Basket { get; set; }
-        public DbSet<BasketItems> BasketItems { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Account> Account { get; set; }
         public DbSet<InventoryItem> InventoryItem { get; set; }
         public DbSet<InventorySystem> InventorySystem { get; set; }
@@ -35,11 +35,11 @@ namespace Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-             new SeedContextArticle(modelBuilder);
-           //  new SeedContextAccount(modelBuilder);
+            // new SeedContextArticle(modelBuilder);
+            //new SeedContextAccount(modelBuilder);
             //new SeedContextLogin(modelBuilder);
-           //  new SeedContextBasket(modelBuilder);
-             new SeedContextCustomer(modelBuilder);
+            //new SeedContextBasket(modelBuilder);
+            //new SeedContextCustomer(modelBuilder);
         }
     }
 }

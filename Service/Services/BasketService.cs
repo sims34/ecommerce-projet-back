@@ -20,7 +20,7 @@ namespace Service.Services
             _basketRepository = repo;
         }
 
-        public bool AddItemsToBasket(Guid basketId, BasketItems basketItem)
+        public bool AddItemsToBasket(Guid basketId, BasketItem basketItem)
         {
             var basket = _basketRepository.Find(basketId);
             
@@ -49,7 +49,7 @@ namespace Service.Services
             return totalPrice;
         }
 
-        public bool IsExistingItem(Basket basket, BasketItems basketItem)
+        public bool IsExistingItem(Basket basket, BasketItem basketItem)
         {
             var existingItem = basket.BasketItems.FirstOrDefault(i => 
             i.Article.IdArticle == basketItem.Article.IdArticle);
